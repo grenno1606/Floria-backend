@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import { checkDatabaseConnection } from "./config/database";
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Chào mừng đến với Floria API Backend!");
 });
 
+app.use("/api/auth", authRoutes); // Tất cả API xác thực sẽ bắt đầu bằng /api/auth
 const startServer = async () => {
   await checkDatabaseConnection();
 
