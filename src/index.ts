@@ -8,6 +8,11 @@ import sizeRoutes from "./routes/sizeRoutes";
 import mediaRoutes from "./routes/mediaRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import productRoutes from "./routes/productRoutes";
+import favoriteRoutes from "./routes/favoriteRoutes";
+import cartRoutes from "./routes/cartRoutes";
+import reviewRoutes from "./routes/reviewRoutes";
+import customerRoutes from "./routes/customerRoutes";
+import blogRoutes from "./routes/blogRoutes";
 import path from "path";
 
 dotenv.config();
@@ -30,6 +35,11 @@ app.use("/api/sizes", sizeRoutes);
 app.use("/api/media", mediaRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/favorites", favoriteRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/customer", customerRoutes);
+app.use("/api/blogs", blogRoutes);
 
 const startServer = async () => {
   await checkDatabaseConnection();
