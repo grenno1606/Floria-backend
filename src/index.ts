@@ -4,6 +4,11 @@ import cors from "cors";
 import helmet from "helmet";
 import { checkDatabaseConnection } from "./config/database";
 import authRoutes from "./routes/authRoutes";
+import sizeRoutes from "./routes/sizeRoutes";
+import mediaRoutes from "./routes/mediaRoutes";
+import categoryRoutes from "./routes/categoryRoutes";
+import productRoutes from "./routes/productRoutes";
+import path from "path";
 
 dotenv.config();
 
@@ -14,12 +19,18 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Chào mừng đến với Floria API Backend!");
 });
 
-app.use("/api/auth", authRoutes); // Tất cả API xác thực sẽ bắt đầu bằng /api/auth
+app.use("/api/auth", authRoutes);
+app.use("/api/sizes", sizeRoutes);
+app.use("/api/media", mediaRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/products", productRoutes);
+
 const startServer = async () => {
   await checkDatabaseConnection();
 

@@ -50,6 +50,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({ message: "Đăng nhập thành công", token });
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error });
+    console.error("Login error:", error);
   }
 };
 
